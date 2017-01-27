@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SBR Documentation &#8212; Separate Body and Reference 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sbr-documentation">
+<h1>SBR Documentation<a class="headerlink" href="#sbr-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="module-separate_body_ref">
+<span id="methods"></span><h1>Methods<a class="headerlink" href="#module-separate_body_ref" title="Permalink to this headline">¶</a></h1>
+<p>This module automates the separation of body part and
+reference part of a LateX produced PDF.</p>
+<dl class="function">
+<dt id="separate_body_ref._clean">
+<code class="descclassname">separate_body_ref.</code><code class="descname">_clean</code><span class="sig-paren">(</span><em>dest</em>, <em>level</em>, <em>recursive</em>, <em>rmFileExtensions</em>, <em>rm</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/separate_body_ref.html#_clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#separate_body_ref._clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove certain files in a specific directory</p>
+<p>This function removes the files whose extensions are
+in the list rmFileExtensions by using rm method. More
+specifically, this function will recursively remove
+certain files (i.e., files with extensions contained in
+rmFileExtensions)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dest</strong> :  str</p>
+<blockquote>
+<div><p>The directory</p>
+</div></blockquote>
+<p><strong>level</strong> : int</p>
+<blockquote>
+<div><p>Current level</p>
+</div></blockquote>
+<p><strong>recursive</strong> : int</p>
+<blockquote>
+<div><p>Maximum recursive depth</p>
+</div></blockquote>
+<p><strong>rmFileExtensions</strong> : set</p>
+<blockquote>
+<div><p>A set of string specifies the extensions of files to be deleted</p>
+</div></blockquote>
+<p><strong>rm</strong> :  object</p>
+<blockquote class="last">
+<div><p>An object that is callable and accept a single string parameter</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="separate_body_ref.build">
+<code class="descclassname">separate_body_ref.</code><code class="descname">build</code><span class="sig-paren">(</span><em>texFileLists</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/separate_body_ref.html#build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#separate_body_ref.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function builds pdf files for tex files</p>
+<p>This function builds PDF for each tex file in the
+list texFileLists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>texFileLists</strong> :  list</p>
+<blockquote class="last">
+<div><p>The tex file list</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="separate_body_ref.clean">
+<code class="descclassname">separate_body_ref.</code><code class="descname">clean</code><span class="sig-paren">(</span><em>recursive=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/separate_body_ref.html#clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#separate_body_ref.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean certain temporary files</p>
+<p>This function removes all temporary files generated
+during the compilation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>recursive</strong> :  int, optional</p>
+<blockquote class="last">
+<div><p>Maximum recursive depth</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="separate_body_ref.separate_body_and_ref">
+<code class="descclassname">separate_body_ref.</code><code class="descname">separate_body_and_ref</code><span class="sig-paren">(</span><em>TexRoot</em>, <em>build_and_clean=True</em>, <em>recursive=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/separate_body_ref.html#separate_body_and_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#separate_body_ref.separate_body_and_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Separately produce the body and reference for TexRoot</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>TexRoot</strong> : string</p>
+<blockquote>
+<div><p>The main tex file for the latex project</p>
+</div></blockquote>
+<p><strong>build_and_clean</strong> : boolean, optional</p>
+<blockquote>
+<div><p>Whether to build and clean the generated separate tex files</p>
+</div></blockquote>
+<p><strong>recursive</strong> : int, optional</p>
+<blockquote class="last">
+<div><p>Recursive depth</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="dependency">
+<h1>Dependency<a class="headerlink" href="#dependency" title="Permalink to this headline">¶</a></h1>
+<p>Lists of dependent packages:</p>
+<ol class="arabic simple">
+<li>Send2Trash</li>
+</ol>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>Please this script in the same directory as the
+main tex file for your latex project. And then
+run this script by typing <code class="docutils literal"><span class="pre">python</span> <span class="pre">./separate_body_ref.py</span> <span class="pre">-h</span></code>
+you will get the details of how to use this
+script.</p>
+</div>
+<div class="section" id="notice">
+<h1>Notice<a class="headerlink" href="#notice" title="Permalink to this headline">¶</a></h1>
+<p>The tex example is copied from <a class="reference external" href="http://tex.stackexchange.com/questions/224796/creating-separate-pdf-file-containing-the-bibliography">Creating separate pdf file containing the bibliography</a> with minor
+revisions.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SBR Documentation</a></li>
+<li><a class="reference internal" href="#module-separate_body_ref">Methods</a></li>
+<li><a class="reference internal" href="#dependency">Dependency</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#notice">Notice</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Long Gong.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
