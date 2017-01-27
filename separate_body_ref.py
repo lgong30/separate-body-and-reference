@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+"""This module automates the separation of body part and
+reference part of a LateX produced PDF."""
 
 import os
 import os.path
@@ -8,24 +8,18 @@ import re
 from subprocess import call
 import argparse
 
-# not needed anymore
-# def get_bib(bibFiles):
-#     bibFileLists = bibFiles.split(',')
-#     for i in xrange(len(bibFileLists)):
-#         k = bibFileLists[i].rfind('/')
-#         if k != -1:
-#             bibFileLists[i] = bibFileLists[i].substring(k)
-#     return bibFileLists
-
 
 def build(texFileLists):
-    """
-    @brief      build pdf files for tex files
+    """This function builds pdf files for tex files
 
     This function builds PDF for each tex file in the
     list texFileLists.
+    
 
-    @param      (list) texFileLists  The tex file list
+    Parameters
+    ----------
+    texFileLists :  list
+        The tex file list
     """
     LaTeX_CMD = ["latex -shell-escape -halt-on-error {texfile}.tex",
                  "bibtex {texfile}.aux",
@@ -43,8 +37,7 @@ def build(texFileLists):
 
 
 def _clean(dest, level, recursive, rmFileExtensions, rm):
-    """
-    @brief      remove certain files in a specific directory
+    """Remove certain files in a specific directory
 
     This function removes the files whose extensions are
     in the list rmFileExtensions by using rm method. More
@@ -52,12 +45,18 @@ def _clean(dest, level, recursive, rmFileExtensions, rm):
     certain files (i.e., files with extensions contained in
     rmFileExtensions)
 
-    @param      (string) dest               the directory
-                (int) level                 current level
-                (int) recursive             maximum recursive depth
-                (set) rmFileExtensions      a set of string specifies the extensions of files to be deleted
-                (function object) rm        an object that is callable and accept a single string parameter
-    
+    Parameters
+    ----------
+    dest :  str
+        The directory          
+    level : int
+        Current level
+    recursive : int 
+        Maximum recursive depth
+    rmFileExtensions : set   
+        A set of string specifies the extensions of files to be deleted
+    rm :  object
+        An object that is callable and accept a single string parameter
     """
     
     if level > recursive:
@@ -74,13 +73,15 @@ def _clean(dest, level, recursive, rmFileExtensions, rm):
 
 
 def clean(recursive=0):
-    """
-    @brief         clean certain temporary files
+    """Clean certain temporary files
 
     This function removes all temporary files generated
     during the compilation.
 
-    @param         (int) recursive        recursive depth
+    Parameters
+    ----------
+    recursive :  int, optional 
+        Maximum recursive depth
     """
     temp_files = set([
         ".blg", ".bbl", ".aux", ".log", ".brf", ".nlo", ".out", ".dvi", ".ps",
@@ -99,11 +100,16 @@ def clean(recursive=0):
 
 
 def separate_body_and_ref(TexRoot, build_and_clean=True, recursive=0):
-    """
-    @brief      separately produce the body and reference for TexRoot
+    """Separately produce the body and reference for TexRoot
 
-    @param      (string) TexRoot              The main tex file for the latex project
-                (boolean) build_and_clean     whether to build and clean the generated separate tex files
+    Parameters
+    ----------
+    TexRoot : string
+        The main tex file for the latex project
+    build_and_clean : boolean, optional     
+        Whether to build and clean the generated separate tex files
+    recursive : int, optional
+        Recursive depth
     """
     _STRING_TO_BE_ADDED = """
 \\newpage
@@ -116,6 +122,7 @@ def separate_body_and_ref(TexRoot, build_and_clean=True, recursive=0):
     _BODY_START_CMD = '\\begin{document}'
     _BODY_END_CMD = '\\end{document}'
     _BBL_INSERT_CMD = '\\input{{{bbl}.bbl}}'
+    _MAKE_TITLE_CMD = '\\maketitle'
 
     filename, file_extension = os.path.splitext(TexRoot)
     body_file = filename + "-body" + file_extension
@@ -140,7 +147,7 @@ def separate_body_and_ref(TexRoot, build_and_clean=True, recursive=0):
             if line.startswith(_BODY_START_CMD):
                 in_header = False
 
-            if in_header:
+            if in_header and (not line.startswith(_MAKE_TITLE_CMD)):
                 ref_fp.write(line + os.linesep)
 
             if line.startswith(_BIB_STYLE_CMD):
